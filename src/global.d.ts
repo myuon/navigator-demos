@@ -18,4 +18,7 @@ interface Navigator {
       ): void;
     }>;
   };
+  keyboard?: {
+    getLayoutMap(): Promise<Map<string, string>>;
+  };
 }
