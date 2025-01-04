@@ -41,6 +41,14 @@ interface Navigator {
       ) => void
     ): void;
   };
+  getBattery(): Promise<BatteryManager>;
+}
+
+class BatteryManager {
+  readonly charging: boolean;
+  readonly chargingTime: number;
+  readonly dischargingTime: number;
+  readonly level: number;
 }
 
 declare namespace JSX {
