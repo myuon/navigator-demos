@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 
 export const ContactsManager: React.FC = () => {
-  const [props, setProperty] = useState<string[] | undefined>();
+  const [props, setProperty] = useState<string[]>([]);
   useEffect(() => {
     if (navigator.contacts) {
       navigator.contacts.getProperties().then((properties) => {
@@ -11,6 +11,7 @@ export const ContactsManager: React.FC = () => {
     }
   }, []);
 
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const [contacts, setContacts] = useState<any[]>();
 
   const [error, setError] = useState<string>();
@@ -30,15 +31,17 @@ export const ContactsManager: React.FC = () => {
         <button
           onClick={async () => {
             try {
-              const contacts = await navigator.contacts.select(props, {
-                multiple: true,
-              });
+              if (navigator.contacts) {
+                const contacts = await navigator.contacts.select(props, {
+                  multiple: true,
+                });
 
-              console.log(contacts);
-              setContacts(contacts);
+                console.log(contacts);
+                setContacts(contacts);
+              }
             } catch (e) {
               console.error(e);
-              setError(e.message);
+              setError((e as Error).message);
             }
           }}
         >
@@ -53,14 +56,13 @@ export const ContactsManager: React.FC = () => {
             <li>Email: {contact.email.join(",")}</li>
             <li>Tel: {contact.tel.join(",")}</li>
             <li>
-              {contact.address.map((address) => (
+              {contact.address.map((address: object) => (
                 <span>{JSON.stringify(address)}</span>
               ))}
             </li>
             <li>
               Icon:{" "}
-              {contact.icon.map((blob) => (
-                // <Img blob={contact.icon} />
+              {contact.icon.map((blob: Blob) => (
                 <img src={URL.createObjectURL(blob)} alt="Contact" />
               ))}
             </li>
@@ -69,20 +71,4 @@ export const ContactsManager: React.FC = () => {
       </div>
     </div>
   );
-};
-
-const Img: React.FC<{ blob: string }> = ({ blob }: { blob: Blob }) => {
-  const [url, setUrl] = useState<string>();
-  useEffect(() => {
-    if (blob) {
-      const url = URL.createObjectURL(blob);
-      setUrl(url);
-
-      return () => {
-        URL.revokeObjectURL(url);
-      };
-    }
-  }, [blob]);
-
-  return <img src={url} alt="Contact" />;
 };
