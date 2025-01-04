@@ -15,6 +15,16 @@ export const RegisterProtocolHandler = () => {
       >
         Register [{window.location.href + "#burger=%s"}] to web+burger
       </button>
+      <button
+        onClick={() => {
+          navigator.registerProtocolHandler(
+            "web+burger",
+            window.location.href + "#burger=%s"
+          );
+        }}
+      >
+        Unregister [{window.location.href + "#burger=%s"}] to web+burger
+      </button>
 
       <div>
         <div>
