@@ -24,13 +24,7 @@ export const Bluetooth: React.FC = () => {
           Check availability
         </button>
 
-        <p>
-          {availability === undefined
-            ? "-"
-            : availability
-            ? "available"
-            : "not available"}
-        </p>
+        <p>{availability?.toString() ?? "-"}</p>
       </div>
       <div>
         <button
