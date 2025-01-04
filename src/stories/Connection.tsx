@@ -3,7 +3,9 @@
 import { useState } from "react";
 
 export const Connection: React.FC = () => {
-  const [data, setData] = useState<NetworkInformation>();
+  const [data, setData] = useState<NetworkInformation | undefined>(
+    navigator.connection
+  );
 
   return (
     <div>

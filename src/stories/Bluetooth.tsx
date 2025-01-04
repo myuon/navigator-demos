@@ -1,8 +1,14 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 export const Bluetooth: React.FC = () => {
   const [availability, setAvailability] = useState<boolean>();
   const [device, setDevice] = useState<BluetoothDevice>();
+  useEffect(() => {
+    navigator.bluetooth.getAvailability().then((a) => {
+      console.log(a);
+      setAvailability(a);
+    });
+  }, []);
 
   return (
     <div>
