@@ -7,4 +7,15 @@ interface Navigator {
     ): Promise<object[]>;
   };
   deviceMemory?: number;
+  ink?: {
+    requestPresenter(options: { presentationArea: HTMLElement }): Promise<{
+      updateInkTrailStartPoint(
+        evt: PointerEvent,
+        style: {
+          color: string;
+          diameter: number;
+        }
+      ): void;
+    }>;
+  };
 }
