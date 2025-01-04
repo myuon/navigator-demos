@@ -43,6 +43,7 @@ interface Navigator {
   };
   getAutoplayPolicy(type: "audiocontext" | "mediaelement"): string;
   getBattery(): Promise<BatteryManager>;
+  getInstalledRelatedApps(): Promise<RelatedApplication[]>;
 }
 
 class BatteryManager {
