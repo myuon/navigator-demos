@@ -1,0 +1,17 @@
+{
+  "$schema": "https://json.schemastore.org/web-manifest-combined.json",
+  "name": "navigator-demos",
+  "short_name": "navigator-demos",
+  "start_url": ".",
+  "display": "standalone",
+  "background_color": "#fff",
+  "prefer_related_applications": true,
+  "description": "A collection of demos for the Navigator API",
+  "icons": [],
+  "related_applications": [
+    {
+      "platform": "play",
+      "url": "https://navigator-demos.vercel.app"
+    }
+  ]
+}
