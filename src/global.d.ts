@@ -41,6 +41,7 @@ interface Navigator {
       ) => void
     ): void;
   };
+  getAutoplayPolicy(type: "audiocontext" | "mediaelement"): string;
   getBattery(): Promise<BatteryManager>;
 }
 
