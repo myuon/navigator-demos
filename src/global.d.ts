@@ -6,4 +6,5 @@ interface Navigator {
       options: { multiple: boolean }
     ): Promise<object[]>;
   };
+  deviceMemory?: number;
 }
